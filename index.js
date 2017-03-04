@@ -69,11 +69,11 @@ class Listener extends EventEmitter {
 		});
 
 		reader.on('nsqd_connected', function onConnected(url, port) {
-			this.emit('nsqd_connected:', url, port);
+			this.emit('connected:', url, port);
 		});
 
 		reader.on('nsqd_closed', function onClosed(msg) {
-			this.emit('nsqd_closed', msg);
+			this.emit('closed', msg);
 		});
 
 		reader.on('error', function onError(err) {
@@ -101,8 +101,32 @@ class Listener extends EventEmitter {
 			}
 		}
 
-		if (!this.options.dataPort) {
-			const err = 'Property of options "dataPort" is a required';
+		if (!this.options.dataUrlPort) {
+			const err = 'Property of options "dataUrlPort" is a required';
+			if (this.optionsErrors.indexOf(err) === -1) {
+				this.optionsErrors.push(err);
+			}
+		}
+		if (!this.options.dataTcpPort) {
+			const err = 'Property of options "dataTcpPort" is a required';
+			if (this.optionsErrors.indexOf(err) === -1) {
+				this.optionsErrors.push(err);
+			}
+		}
+		if (!this.options.lookupUrl) {
+			const err = 'Property of options "lookupUrl" is a required';
+			if (this.optionsErrors.indexOf(err) === -1) {
+				this.optionsErrors.push(err);
+			}
+		}
+		if (!this.options.lookupPort) {
+			const err = 'Property of options "lookupPort" is a required';
+			if (this.optionsErrors.indexOf(err) === -1) {
+				this.optionsErrors.push(err);
+			}
+		}
+		if (!this.options.channel) {
+			const err = 'Property of options "channel" is a required';
 			if (this.optionsErrors.indexOf(err) === -1) {
 				this.optionsErrors.push(err);
 			}
