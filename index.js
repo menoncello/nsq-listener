@@ -18,7 +18,7 @@ class Listener extends EventEmitter {
 		}
 
 		request.post(
-			`${this.options.dataUrl}:${this.options.dataPort}/topic/create?topic=${this.options.topic}`,
+			`${this.options.dataUrl}:${this.options.dataUrlPort}/topic/create?topic=${this.options.topic}`,
 			topicCreated);
 
 		function topicCreated(err) {
@@ -57,14 +57,32 @@ class Listener extends EventEmitter {
 	}
 
 	listen() {
-		const reader = new nsq.Reader(this.options.channel, this.options.topic, {
+		const reader = new nsq.Reader(this.options.topic, this.options.channel, {
 			lookupdHTTPAddresses: `${this.options.lookupUrl}:${this.options.lookupPort}`,
 			nsqdTCPAddresses: `${this.options.dataUrl}:${this.options.dataTcpPort}`,
 			messageTimeout: this.options.messageTimeout,
 		});
 
 		reader.connect();
+		reader.on('message', function onMessage(message) {
+			this.emit('message', message);
+		});
 
+		reader.on('nsqd_connected', function onConnected(url, port) {
+			this.emit('nsqd_connected:', url, port);
+		});
+
+		reader.on('nsqd_closed', function onClosed(msg) {
+			this.emit('nsqd_closed', msg);
+		});
+
+		reader.on('error', function onError(err) {
+			this.emit('error', err);
+		});
+
+		reader.on('discard', function onDiscard(msg) {
+			this.emit('discard', msg);
+		});
 	}
 
 	checkOptions() {
