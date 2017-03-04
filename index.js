@@ -17,9 +17,8 @@ class Listener extends EventEmitter {
 			return;
 		}
 
-		request.post(
-			`${this.options.dataUrl}:${this.options.dataUrlPort}/topic/create?topic=${this.options.topic}`,
-			topicCreated);
+		const url = `http://${this.options.dataUrl}:${this.options.dataUrlPort}/topic/create?topic=${this.options.topic}`;
+		request.post(url, topicCreated);
 
 		function topicCreated(err) {
 			if (err) {
@@ -40,10 +39,9 @@ class Listener extends EventEmitter {
 			return;
 		}
 
-		request.post(
-			`${this.options.dataUrl}:${this.options.dataUrlPort}/channel/create?topic=${this.options.topic}&` +
-			`channel=${this.options.channel}`,
-			channelCreated);
+		const url = `http://${this.options.dataUrl}:${this.options.dataUrlPort}/channel/create?` +
+			`topic=${this.options.topic}&channel=${this.options.channel}`;
+		request.post(url, channelCreated);
 
 		function channelCreated(err) {
 			if (err) {
