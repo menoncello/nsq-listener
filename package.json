@@ -1,0 +1,26 @@
+{
+  "name": "nsq-listener",
+  "version": "0.0.1",
+  "description": "Simple way to create topics, channels and listener messages for NSQ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/menoncello/nsq-listener.git"
+  },
+  "author": "Eduardo Menoncello",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/menoncello/nsq-listener/issues"
+  },
+  "homepage": "https://github.com/menoncello/nsq-listener#readme",
+  "keywords": [
+    "NSQ"
+  ],
+  "dependencies": {
+    "nsqjs": "^0.7.13",
+    "request": "^2.79.0"
+  }
+}
