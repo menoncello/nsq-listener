@@ -1,6 +1,6 @@
 {
   "name": "nsq-listener",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Simple way to create topics, channels and listener messages for NSQ",
   "main": "index.js",
   "scripts": {
