@@ -20,6 +20,7 @@
     "NSQ"
   ],
   "dependencies": {
+    "bluebird": "^3.5.0",
     "nsqjs": "^0.7.13",
     "request": "^2.79.0"
   }
