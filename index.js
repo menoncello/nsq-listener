@@ -42,25 +42,11 @@ class Listener extends EventEmitter {
 
 		reader.connect();
 
-		reader.on('message', function onMessage(message) {
-			this.emit('message', message);
-		});
-
-		reader.on('nsqd_connected', function onConnected(url, port) {
-			this.emit('connected:', url, port);
-		});
-
-		reader.on('nsqd_closed', function onClosed(msg) {
-			this.emit('closed', msg);
-		});
-
-		reader.on('error', function onError(err) {
-			this.emit('error', err);
-		});
-
-		reader.on('discard', function onDiscard(msg) {
-			this.emit('discard', msg);
-		});
+		reader.on('message', (message) => this.emit('message', message));
+		reader.on('nsqd_connected', (url, port) => this.emit('connected:', url, port));
+		reader.on('nsqd_closed', (msg) => this.emit('closed', msg));
+		reader.on('error', (err) => this.emit('error', err));
+		reader.on('discard', (msg) => this.emit('discard', msg));
 	}
 }
 
