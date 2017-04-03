@@ -1,10 +1,10 @@
 {
   "name": "nsq-listener",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "description": "Simple way to create topics, channels and listener messages for NSQ",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "repository": {
     "type": "git",
